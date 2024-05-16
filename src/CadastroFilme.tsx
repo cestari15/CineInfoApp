@@ -1,21 +1,58 @@
 import React, { useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Icons from "./screens/Icons";
+import DateTimePicker from '@react-native-community/datetimepicker';
+import axios from "axios";
 
 
 
-function CadastroFilmes(): JSX.Element {
-    const [email, setEmail] = useState("");
-    const [password, SetPassword] = useState("");
 
 
-    function login() {
-        const dados = {
-            email: email,
-            password: password
-        }
-        console.log(dados);
+
+const CadastroFilmes: React.FC = () => {
+    const [filme, setFilme] = useState<[]>([]);
+    const [titulo, setTitulo] = useState<string>('');
+    const [diretor, setDiretor] = useState<string>('');
+    const [genero, setGenero] = useState<string>('');
+    const [dt_lancamento, setDt_lancamento] = useState<string>('');
+    const [sinopse, setSinopse] = useState<string>('');
+    const [elenco, setElenco] = useState<string>('');
+    const [classificacao, setClassificacao] = useState<string>('');
+    const [plataformas, setPlataformas] = useState<string>('');
+    const [duracao, setDuracao] = useState<string>('');
+
+    const cadastrarFilmes = async () => {
+
+        try{
+        const formData = new FormData();
+        formData.append('titulo', titulo);
+        formData.append('diretor', diretor);
+        formData.append('genero', genero);
+        formData.append('dt_lancamento', dt_lancamento);
+        formData.append('sinopse', sinopse);
+        formData.append('elenco', elenco);
+        formData.append('classificacao', classificacao);
+        formData.append('plataformas', plataformas);
+        formData.append('duracao', duracao);
+
+        const response = await axios.post('http://10.137.11.214:8000/api/filmes/cadastro', formData, {
+            
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }            
+        });
+        
+    } catch(error) {
+        console.log(error);
     }
+    }
+
+
+
+
+
+
+
 
 
     return (
@@ -23,60 +60,69 @@ function CadastroFilmes(): JSX.Element {
 
         <View style={styles.container}>
 
+            <TouchableOpacity>
             <Image source={require('./assets/images/logo.png')} style={styles.Logo} />
+            </TouchableOpacity>
 
             <ScrollView style={styles.Login}>
 
+                <Text style={styles.Text1}>--------------- Cadastrar Stream ----------------</Text>
 
+             
+                <TextInput style={styles.input} placeholder="Título" placeholderTextColor="#D94F04"
+                    value={titulo} onChangeText={setTitulo} multiline
+                />
+
+            
+                <TextInput style={styles.input} placeholder="Diretor" placeholderTextColor="#D94F04"
+                    value={diretor} onChangeText={setDiretor} multiline
+                />
+
+              
+                <TextInput style={styles.inputGenero} placeholder="Gênero" placeholderTextColor="#D94F04"
+                  value={genero} onChangeText={setGenero} multiline
+                />
+
+
+                <TextInput style={styles.inputClassificacao} placeholder="Classificação" placeholderTextColor="#D94F04"
+                     value={classificacao} onChangeText={setClassificacao} multiline
+                />
+
+            
+                <TextInput style={styles.inputDate} placeholder="Data de Lançamento" placeholderTextColor="#D94F04"
+                  value={dt_lancamento} onChangeText={setDt_lancamento} multiline
+                />
+
+             
+                <TextInput style={styles.inputDuracao} placeholder="Duração" placeholderTextColor="#D94F04"
+                    value={duracao} onChangeText={setDuracao} multiline
+                />
+
+                
+              
+                <TextInput style={styles.inputSinopse} placeholder="Sinopse" placeholderTextColor="#D94F04"
+                      value={sinopse} onChangeText={setSinopse} multiline
+                />
+
+           
+                <TextInput style={styles.input} placeholder="Elenco" placeholderTextColor="#D94F04"
+                     value={elenco} onChangeText={setElenco} multiline
+                />
 
              
 
-
-                <Text style={styles.Text1}>--------------- Cadastrar Stream ----------------</Text>
-
-
-                <Text>Título</Text>
-                <TextInput style={styles.input} placeholder="Digite aqui o Título" placeholderTextColor="#D94F04"
-                    onChangeText={(textPassword) => SetPassword(textPassword)}
+              
+                <TextInput style={styles.input} placeholder="Plataformas" placeholderTextColor="#D94F04"
+                   value={plataformas} onChangeText={setPlataformas} multiline
                 />
+       
 
-                <Text>Diretor</Text>
-                <TextInput style={styles.input} placeholder="Digite aqui o Diretor do Stream" placeholderTextColor="#D94F04"
-                    onChangeText={(textPassword) => SetPassword(textPassword)}
-                />
-
-                <Text>Gênero</Text>
-                <TextInput style={styles.input} placeholder="Digite aqui o Gênero do Stream" placeholderTextColor="#D94F04"
-                    onChangeText={(textPassword) => SetPassword(textPassword)}
-                />
-
-                <Text>Data de Lançamento</Text>
-                <TextInput style={styles.input} placeholder="Digite aqui a Data de Lançamento do Stream" placeholderTextColor="#D94F04"
-                    onChangeText={(textPassword) => SetPassword(textPassword)} keyboardType=""
-                />
-                <Text >Email</Text>
-                <TextInput style={styles.input} placeholder="Digite aqui o seu email" placeholderTextColor="#D94F04"
-                    onChangeText={(textEmail) => setEmail(textEmail)}
-                />
-
-                <Text>Senha</Text>
-                <TextInput style={styles.input} placeholder="Digite aqui sua senha" placeholderTextColor="#D94F04"
-                    onChangeText={(textPassword) => SetPassword(textPassword)}
-                />
+          
+              
 
 
-
-
-
-
-
-                <TouchableOpacity>
-                <Text style={styles.Text}>Esqueceu sua senha?</Text>
-                </TouchableOpacity>
-               
-                <TouchableOpacity style={styles.button}
-                    onPress={() => { login() }}>
-                    <Text style={styles.buttonText}>Entrar</Text>
+                <TouchableOpacity style={styles.button} onPress={cadastrarFilmes}>
+                    <Text style={styles.buttonText}>Cadastrar</Text>
                 </TouchableOpacity>
 
 
@@ -100,7 +146,8 @@ const styles = StyleSheet.create({
     Text1: {
         marginRight: 'auto',
         marginLeft: 'auto',
-        fontSize: 15
+        fontSize: 15,
+        marginBottom:15
     },
     Text: {
 
@@ -134,13 +181,14 @@ const styles = StyleSheet.create({
         fontSize: 50,
         marginLeft: 'auto',
         marginRight: 'auto',
-        marginTop: 20
+        marginBottom:15,
+        marginTop:9
     },
     buttonText: {
-        fontSize: 23,
-        width: 90,
+        fontSize: 25,
+        width: 110,
         color: '#FFF',
-        marginLeft: 148,
+        marginLeft: 118,
         marginTop: 13
     },
     forgotPassword: {
@@ -167,6 +215,84 @@ const styles = StyleSheet.create({
         marginRight: 'auto',
 
 
-    }
-})
+    },
+    inputDate:{
+        marginBottom: 20,
+        paddingHorizontal: 10,
+        borderRadius: 8,
+        borderWidth: 1,
+        borderColor: '#D94F04',
+        color: 'black',
+        width: '48%',
+       
+    },
+
+    inputDuracao:{
+        marginBottom: 20,
+        paddingHorizontal: 10,
+        borderRadius: 8,
+        borderWidth: 1,
+        borderColor: '#D94F04',
+        color: 'black',
+        width: '48%',
+        marginLeft:'52%',
+        marginVertical: -70
+    },
+    inputClassificacao:{
+        marginBottom: 20,
+        paddingHorizontal: 10,
+        borderRadius: 8,
+        borderWidth: 1,
+        borderColor: '#D94F04',
+        color: 'black',
+        width: '48%',
+        marginLeft:'52%',
+        marginVertical: -70
+    },
+    inputGenero:{
+        marginBottom: 20,
+        paddingHorizontal: 10,
+        borderRadius: 8,
+        borderWidth: 1,
+        borderColor: '#D94F04',
+        color: 'black',
+        width: '48%',
+    },
+    inputSinopse:{
+    marginBottom: 20,
+    paddingHorizontal: 10,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#D94F04',
+    color: 'black',
+    width: 360,
+    height:100,
+    
+}
+});
 export default CadastroFilmes;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             
+     
+
+
+
+
+
+
+          

@@ -5,7 +5,7 @@ import CadastroFilmes from "./src/CadastroFilme";
 
 function App(): React.JSX.Element{
   return (
-   // <LoginScreen/>
+   //<LoginScreen/>
     //<Icons/>
     <CadastroFilmes/>
   );
