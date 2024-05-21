@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, ScrollView } from "react-native";
+import Footer from "./screens/Footer";
+import FooterAdm from "./screens/FooterAdm";
 
 
 interface Filme {
@@ -96,7 +98,7 @@ const ListagemFilmes: React.FC = () => {
             </ScrollView>
 
 
-
+<FooterAdm/>
         </View>
 
     );
@@ -112,7 +114,8 @@ const styles = StyleSheet.create({
     footer: {},
     footerIcon: {},
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor:'white'
     },
     hIcon: {},
     especialides: {},
