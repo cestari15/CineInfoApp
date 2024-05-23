@@ -296,6 +296,6 @@ const styles = StyleSheet.create({
     width: 360,
     height: 70,
 }
-})
+});
 
 export default CadastroFilme;
