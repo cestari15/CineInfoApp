@@ -26,16 +26,16 @@ const ListagemFilmes: React.FC = () => {
             console.log(error);
         }
     }
-    const navigation = useNavigation(); 
+    const navigation = useNavigation();
 
     const renderItem = ({ item }: { item: Filme }) => (
         <View style={styles.item} key={item.id}>
             <TouchableOpacity><Image style={styles.image} source={require('./assets/images/filme2.jpg')} /></TouchableOpacity>
             <Text style={styles.textNome}>{item.titulo}</Text>
 
-            <TouchableOpacity onPress={()=> navigation.navigate('EditarFilmes',{item})}>
-                        <Image source={require('./assets/images/lapis.png')} style={styles.editarImage}/>
-                    </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('EditarFilmes', { item })}>
+                <Image source={require('./assets/images/lapis.png')} style={styles.editarImage} />
+            </TouchableOpacity>
 
         </View>
     );
@@ -45,8 +45,6 @@ const ListagemFilmes: React.FC = () => {
 
         <View style={styles.container}>
 
-
-            
             <ScrollView>
 
 
@@ -66,18 +64,11 @@ const ListagemFilmes: React.FC = () => {
                         horizontal
                         showsHorizontalScrollIndicator={false}
 
-                        
+
                     />
 
                 </View>
-
-
-           
-
-            
             </ScrollView>
-
-
             <FooterAdm />
         </View>
 
@@ -85,9 +76,9 @@ const ListagemFilmes: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-    editarImage:{
-        height:95,
-        width:120
+    editarImage: {
+        height: 50,
+        width: 120
     },
     image: {
         height: 100,
