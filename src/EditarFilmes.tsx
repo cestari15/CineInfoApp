@@ -97,20 +97,35 @@ const EditarFilmes: React.FC = () => {
                     />
                 </View>
 
-                <View style={styles.alinhamento}>
-                    <TextInput style={styles.input}
+                <View style={styles.alinhamentoGDt}>
+                    <TextInput style={styles.inputGenero}
                         value={genero}
                         onChangeText={SetGenero}
                     />
                 </View>
 
-                <View style={styles.alinhamento}>
-                    <TextInput style={styles.input}
+
+                <View style={styles.alinhamentoCD}>
+                    <TextInput style={styles.inputClassificacao}
+                        value={classificacao}
+                        onChangeText={SetClassificacao}
+                        multiline
+                    />
+
+                </View>
+
+                <View style={styles.alinhamentoGDt}>
+                    <TextInput style={styles.inputDate}
                         value={dt_lancamento}
                         onChangeText={SetDt_lancamento}
                     />
                 </View>
-
+                <View style={styles.alinhamentoCD}>
+                    <TextInput style={styles.inputDuracao}
+                        value={duracao}
+                        onChangeText={SetDuracao}
+                    />
+                </View>
                 <View style={styles.alinhamento}>
                     <TextInput style={styles.input}
                         value={sinopse}
@@ -123,14 +138,7 @@ const EditarFilmes: React.FC = () => {
                         onChangeText={SetElenco}
                     />
                 </View>
-                <View style={styles.alinhamento}>
-                    <TextInput style={styles.input}
-                        value={classificacao}
-                        onChangeText={SetClassificacao}
-                        multiline
-                    />
-
-                </View>
+           
                 <View style={styles.alinhamento}>
                     <TextInput style={styles.input}
                         value={plataformas}
@@ -138,12 +146,7 @@ const EditarFilmes: React.FC = () => {
                     />
                 </View>
 
-                <View style={styles.alinhamento}>
-                    <TextInput style={styles.input}
-                        value={duracao}
-                        onChangeText={SetDuracao}
-                    />
-                </View>
+              
                 <View style={styles.alinhamento}>
                 <TouchableOpacity onPress={atualizar} style={styles.input2}>
                     <Text style={styles.TextVolta}>Editar</Text>
