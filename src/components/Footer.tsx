@@ -20,7 +20,7 @@ function Footer(): React.ReactElement {
             <Image source={require('../assets/images/user.png')} 
             style={styles.footerIcon}/>
         </TouchableOpacity>
-        <TouchableOpacity >
+        <TouchableOpacity>
             <Image source={require('../assets/images/config.png')} 
             style={styles.footerIcon}/>
         </TouchableOpacity>
