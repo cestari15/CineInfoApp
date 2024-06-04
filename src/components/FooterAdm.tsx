@@ -23,10 +23,7 @@ function FooterAdm(): React.ReactElement {
         
         {elementVisible ? ( 
         <View>
-        <TouchableOpacity onPress={()=> navigation.navigate('CadastroFilme')}
-        style={styles.cadastros}>
-            <Text style={styles.cadastrosText}>Cadastro filmes</Text>
-        </TouchableOpacity> 
+  
 
         <TouchableOpacity onPress={()=> navigation.navigate('CadastroFilme')}
         style={styles.cadastros}>

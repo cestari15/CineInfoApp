@@ -48,7 +48,7 @@ const ListagemFilmes = async () => {
 }
 
 const Delete = async (id: number) => {
-  axios.delete('http://10.137.11.214/api/adm/filmes/delete/' + id).then(function (response) {ListagemFilmes();}
+  axios.delete('http://10.137.11.214/api/filmes/delete/' + id).then(function (response) {ListagemFilmes();}
   ).catch(function (error) {
   console.log(error)
   ListagemFilmes();
