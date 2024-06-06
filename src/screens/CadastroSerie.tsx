@@ -74,7 +74,7 @@ const CadastroSerie: React.FC = () => {
         formData.append('plataformas', plataformas);
         formData.append('episodios', episodios);
 
-        const response = await axios.post('http://10.137.11.214:8000/api/series/cadastro', formData, {
+        const response = await axios.post('http://10.137.11.214/api/series/cadastro', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }            
